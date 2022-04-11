@@ -1,45 +1,87 @@
 import java.io.*;
 import java.util.*;
 
-public class Solution {
+class Persegi{
+    
+    private int sisi;
+    
+    Persegi(int sisi){
+        this.sisi = sisi;
+    }
+    
+    int luasPersegi(){
+        int hasil = this.sisi*this.sisi;
+        return hasil;
+    }
+}
 
-    public static void main(String[] args) {
-   Scanner input = new Scanner(System.in);
-        int pilihan = input.nextInt();
-        if (pilihan == 1){
-            int s = input.nextInt();
-            System.out.println(persegi(s));
-        }
-        else if (pilihan == 2){
-            double alas = input.nextDouble();
-            double tinggi = input.nextDouble();
-            System.out.println(segitiga(alas, tinggi));
-        }
-        else if (pilihan== 3){
-            double jari = input.nextDouble();
-            if (jari%7 == 0){
-                System.out.println(lingkaran(jari));
+class Segitiga {
+    
+    private int alas, tinggi;
+    
+    Segitiga(int alas, int tinggi){
+        this.alas = alas;
+        this.tinggi = tinggi;
+    }
+    
+    int luasSegitiga(){
+        int hasil = (this.alas*this.tinggi) / 2;
+        return hasil;
+    }
+}
+
+class Lingkaran{
+    
+    private double jariJari;
+    
+    Lingkaran(double jariJari){
+        this.jariJari = jariJari;
+    }
+    
+    double luasLingkaran(){
+        double hasil = 22/7*jariJari*jariJari;
+        return hasil;
+    }
+
+    double luasLingkaran2(){
+        double hasil = 3.14*jariJari*jariJari;
+        int cast = (int) hasil;
+        return cast;
+    }
+}
+
+public class Solution {
+    
+    public static void main (String[] args){
+        
+        int a,b;
+        double c;
+        
+        Scanner input = new Scanner(System.in);
+        int pilih = input.nextInt();
+        
+        if (pilih == 1){
+            a = input.nextInt();
+            Persegi bangunPersegi = new Persegi(a);
+            System.out.println(bangunPersegi.luasPersegi());
+            
+        }else if (pilih == 2){
+            a = input.nextInt();
+            b = input.nextInt();
+            Segitiga bangunSegitiga = new Segitiga(a,b);
+            System.out.println(bangunSegitiga.luasSegitiga());
+            
+        }else if (pilih == 3){
+            c = input.nextDouble();
+            Lingkaran bangunLingkaran = new Lingkaran (c);
+            if (c%7 == 0){
+                System.out.println(bangunLingkaran.luasLingkaran());
+            }else{
+                System.out.println(bangunLingkaran.luasLingkaran2());
             }
-            else 
-             System.out.println(lingkaran2(jari));
-        }
-        else System.out.println("Input yang anda masukan tidak sesuai");
-    }
-    public static int persegi(int sisi){
-        int hasil = sisi*sisi;
-        return hasil;
-    }
-    public static int segitiga(Double a, Double t){
-        int hasil = (int) (a*t/2);
-        return hasil;
-    }
-    public static double lingkaran(double r){
-        double hasil = 22 / 7 * r * r;
-        return hasil;
-    }
-    public static double lingkaran2(double r){
-        double hasil = 3.14 * r* r;
-        int result = (int)hasil; 
-        return result;
+            
+        }else{
+            System.out.println("Input yang anda masukan tidak sesuai");
+        }     
     }
 }
